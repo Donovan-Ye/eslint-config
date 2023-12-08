@@ -64,7 +64,7 @@ function runWithConfig(name: string, configs: OptionsConfig, ...items: ConfigIte
     })
     await fs.writeFile(join(target, 'eslint.config.js'), `
 // @eslint-disable
-import donovan from '@donovan/eslint-config'
+import donovan from 'eslint-config-donovan'
 
 export default donovan(
   ${JSON.stringify(configs)},
