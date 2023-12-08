@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-donovan",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@8.10.2",
   "description": "Donovan's ESLint config preset",
   "author": "DonovanYe <xxiaozhiyzj@gmail.com>",
