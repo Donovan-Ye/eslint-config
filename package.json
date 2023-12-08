@@ -1,5 +1,5 @@
 {
-  "name": "@donovan/eslint-config",
+  "name": "eslint-config-donovan",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@8.10.2",
