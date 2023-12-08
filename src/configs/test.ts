@@ -10,7 +10,7 @@ export function test(options: OptionsIsInEditor & OptionsOverrides = {}): Config
 
   return [
     {
-      name: 'antfu:test:setup',
+      name: 'donovan:test:setup',
       plugins: {
         test: {
           ...pluginVitest,
@@ -24,7 +24,7 @@ export function test(options: OptionsIsInEditor & OptionsOverrides = {}): Config
     },
     {
       files: GLOB_TESTS,
-      name: 'antfu:test:rules',
+      name: 'donovan:test:rules',
       rules: {
         'test/consistent-test-it': ['error', { fn: 'it', withinDescribe: 'it' }],
         'test/no-identical-title': 'error',

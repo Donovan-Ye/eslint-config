@@ -10,14 +10,14 @@ export function markdown(options: OptionsComponentExts & OptionsOverrides = {}):
 
   return [
     {
-      name: 'antfu:markdown:setup',
+      name: 'donovan:markdown:setup',
       plugins: {
         markdown: pluginMarkdown,
       },
     },
     {
       files: [GLOB_MARKDOWN],
-      name: 'antfu:markdown:processor',
+      name: 'donovan:markdown:processor',
       processor: 'markdown/markdown',
     },
     {
@@ -32,10 +32,10 @@ export function markdown(options: OptionsComponentExts & OptionsOverrides = {}):
           },
         },
       },
-      name: 'antfu:markdown:rules',
+      name: 'donovan:markdown:rules',
       rules: {
-        'antfu/no-cjs-exports': 'off',
-        'antfu/no-ts-export-equal': 'off',
+        'donovan/no-cjs-exports': 'off',
+        'donovan/no-ts-export-equal': 'off',
 
         'import/newline-after-import': 'off',
 

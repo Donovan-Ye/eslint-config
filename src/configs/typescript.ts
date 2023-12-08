@@ -1,7 +1,13 @@
 import process from 'node:process'
-import type { ConfigItem, OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types'
+import type {
+  ConfigItem,
+  OptionsComponentExts,
+  OptionsOverrides,
+  OptionsTypeScriptParserOptions,
+  OptionsTypeScriptWithTypes,
+} from '../types'
 import { GLOB_SRC } from '../globs'
-import { parserTs, pluginAntfu, pluginImport, pluginTs } from '../plugins'
+import { parserTs, pluginDonovan, pluginImport, pluginTs } from '../plugins'
 import { renameRules, toArray } from '../utils'
 
 export function typescript(
@@ -42,9 +48,9 @@ export function typescript(
   return [
     {
       // Install the plugins without globs, so they can be configured separately.
-      name: 'antfu:typescript:setup',
+      name: 'donovan:typescript:setup',
       plugins: {
-        antfu: pluginAntfu,
+        donovan: pluginDonovan,
         import: pluginImport,
         ts: pluginTs as any,
       },
@@ -68,7 +74,7 @@ export function typescript(
           ...parserOptions as any,
         },
       },
-      name: 'antfu:typescript:rules',
+      name: 'donovan:typescript:rules',
       rules: {
         ...renameRules(
           pluginTs.configs['eslint-recommended'].overrides![0].rules!,
@@ -80,10 +86,6 @@ export function typescript(
           '@typescript-eslint/',
           'ts/',
         ),
-
-        'antfu/generic-spacing': 'error',
-        'antfu/named-tuple-spacing': 'error',
-        'antfu/no-cjs-exports': 'error',
 
         'no-dupe-class-members': 'off',
         'no-invalid-this': 'off',
@@ -119,7 +121,7 @@ export function typescript(
     },
     {
       files: ['**/*.d.ts'],
-      name: 'antfu:typescript:dts-overrides',
+      name: 'donovan:typescript:dts-overrides',
       rules: {
         'eslint-comments/no-unlimited-disable': 'off',
         'import/no-duplicates': 'off',
@@ -129,14 +131,14 @@ export function typescript(
     },
     {
       files: ['**/*.{test,spec}.ts?(x)'],
-      name: 'antfu:typescript:tests-overrides',
+      name: 'donovan:typescript:tests-overrides',
       rules: {
         'no-unused-expressions': 'off',
       },
     },
     {
       files: ['**/*.js', '**/*.cjs'],
-      name: 'antfu:typescript:javascript-overrides',
+      name: 'donovan:typescript:javascript-overrides',
       rules: {
         'ts/no-require-imports': 'off',
         'ts/no-var-requires': 'off',

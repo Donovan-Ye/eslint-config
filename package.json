@@ -1,13 +1,12 @@
 {
-  "name": "@antfu/eslint-config",
+  "name": "@donovan/eslint-config",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "packageManager": "pnpm@8.10.2",
-  "description": "Anthony's ESLint config",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com> (https://github.com/antfu/)",
+  "description": "ESLint config for DonovanYe",
+  "author": "DonovanYe <xxiaozhiyzj@gmail.com>",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/eslint-config",
+  "homepage": "",
   "keywords": [
     "eslint-config"
   ],
@@ -27,9 +26,9 @@
     "stub": "tsup src/index.ts --format esm",
     "dev": "tsup src/index.ts --format esm,cjs --watch & eslint-flat-config-viewer",
     "lint": "pnpm run stub && eslint .",
-    "prepack": "nr build",
     "release": "bumpp && pnpm publish",
     "test": "vitest",
+    "test:timeout": "vitest --test-timeout=99999999",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
@@ -38,11 +37,11 @@
   },
   "dependencies": {
     "@antfu/eslint-define-config": "^1.23.0-2",
-    "@stylistic/eslint-plugin": "^1.0.0",
+    "@stylistic/eslint-plugin": "^1.5.0-beta.0",
     "@typescript-eslint/eslint-plugin": "^6.9.1",
     "@typescript-eslint/parser": "^6.9.1",
     "eslint-config-flat-gitignore": "^0.1.1",
-    "eslint-plugin-antfu": "^1.0.2",
+    "eslint-plugin-antfu": "2.0.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-i": "^2.29.0",
     "eslint-plugin-jsdoc": "^46.8.2",
@@ -51,6 +50,9 @@
     "eslint-plugin-n": "^16.2.0",
     "eslint-plugin-no-only-tests": "^3.1.0",
     "eslint-plugin-perfectionist": "^2.2.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-unicorn": "^49.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "eslint-plugin-vitest": "^0.3.8",
@@ -63,8 +65,7 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "workspace:*",
-    "@antfu/ni": "^0.21.8",
+    "@donovan/eslint-config": "workspace:*",
     "@stylistic/eslint-plugin-migrate": "^1.0.0",
     "@types/eslint": "^8.44.6",
     "@types/fs-extra": "^11.0.3",
@@ -81,7 +82,6 @@
     "sucrase": "^3.34.0",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
-    "unbuild": "^2.0.0",
     "vitest": "^0.34.6"
   },
   "simple-git-hooks": {

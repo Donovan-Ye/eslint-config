@@ -8,7 +8,7 @@ export function jsdoc(options: OptionsStylistic = {}): ConfigItem[] {
 
   return [
     {
-      name: 'antfu:jsdoc',
+      name: 'donovan:jsdoc',
       plugins: {
         jsdoc: pluginJsdoc,
       },

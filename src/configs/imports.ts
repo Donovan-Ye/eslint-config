@@ -1,5 +1,5 @@
 import type { ConfigItem, OptionsStylistic } from '../types'
-import { pluginAntfu, pluginImport } from '../plugins'
+import { pluginDonovan, pluginImport } from '../plugins'
 
 export function imports(options: OptionsStylistic = {}): ConfigItem[] {
   const {
@@ -8,14 +8,14 @@ export function imports(options: OptionsStylistic = {}): ConfigItem[] {
 
   return [
     {
-      name: 'antfu:imports',
+      name: 'donovan:imports',
       plugins: {
-        antfu: pluginAntfu,
+        donovan: pluginDonovan,
         import: pluginImport,
       },
       rules: {
-        'antfu/import-dedupe': 'error',
-        'antfu/no-import-node-modules-by-path': 'error',
+        'donovan/import-dedupe': 'error',
+        'donovan/no-import-node-modules-by-path': 'error',
 
         'import/first': 'error',
         'import/no-duplicates': 'error',

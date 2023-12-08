@@ -13,6 +13,7 @@ import {
   markdown,
   node,
   perfectionist,
+  react,
   sortPackageJson,
   sortTsconfig,
   stylistic,
@@ -35,6 +36,8 @@ const flatConfigProps: (keyof ConfigItem)[] = [
   'settings',
 ]
 
+const ReactPackages = ['react']
+
 const VuePackages = [
   'vue',
   'nuxt',
@@ -45,12 +48,13 @@ const VuePackages = [
 /**
  * Construct an array of ESLint flat config items.
  */
-export function antfu(options: OptionsConfig & ConfigItem = {}, ...userConfigs: (ConfigItem | ConfigItem[])[]) {
+export function donovan(options: OptionsConfig & ConfigItem = {}, ...userConfigs: (ConfigItem | ConfigItem[])[]) {
   const {
     componentExts = [],
     gitignore: enableGitignore = true,
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
     overrides = {},
+    react: enableReact = ReactPackages.some(i => isPackageExists(i)),
     typescript: enableTypeScript = isPackageExists('typescript'),
     vue: enableVue = VuePackages.some(i => isPackageExists(i)),
   } = options
@@ -124,6 +128,13 @@ export function antfu(options: OptionsConfig & ConfigItem = {}, ...userConfigs: 
       overrides: overrides.vue,
       stylistic: stylisticOptions,
       typescript: !!enableTypeScript,
+    }))
+  }
+
+  if (enableReact) {
+    configs.push(react({
+      overrides: overrides.react,
+      stylistic: stylisticOptions,
     }))
   }
 

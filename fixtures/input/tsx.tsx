@@ -1,15 +1,28 @@
-export function Component1() {
-  return <div/>;
+interface Props {
+  foo: number
+  bar: string
+  a: number
+  b: string
+}
+
+export function Component1({foo, bar, a ,
+b}:Props) {
+  return <div>
+    {foo}
+    {bar}
+    {a}{b}
+    </div>;
 }
 
 export function jsx2() {
   const props = {a:1,
   b:2}
-  return < a  foo= 'bar' bar={`foo` } >
+  return < a >
      <div {...props }
-     a={1}
-    b="2">Inline Text</div>
-    <Component1>
+     >Inline Text</div>
+    <Component1  foo= 'bar' bar={`foo` } 
+    a={1}
+    b="2">
       Block Text
       </Component1>
       <div>

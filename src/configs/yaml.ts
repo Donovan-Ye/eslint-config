@@ -17,7 +17,7 @@ export function yaml(
 
   return [
     {
-      name: 'antfu:yaml:setup',
+      name: 'donovan:yaml:setup',
       plugins: {
         yaml: pluginYaml as any,
       },
@@ -27,7 +27,7 @@ export function yaml(
       languageOptions: {
         parser: parserYaml,
       },
-      name: 'antfu:yaml:rules',
+      name: 'donovan:yaml:rules',
       rules: {
         'style/spaced-comment': 'off',
 

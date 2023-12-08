@@ -15,19 +15,23 @@ afterAll(async () => {
 runWithConfig('js', {
   typescript: false,
   vue: false,
+  react: false,
 })
 runWithConfig('all', {
   typescript: true,
   vue: true,
+  react: true,
 })
 runWithConfig('no-style', {
   typescript: true,
   vue: true,
+  react: true,
   stylistic: false,
 })
 runWithConfig('tab-double-quotes', {
   typescript: true,
   vue: true,
+  react: true,
   stylistic: {
     indent: 'tab',
     quotes: 'double',
@@ -60,9 +64,9 @@ function runWithConfig(name: string, configs: OptionsConfig, ...items: ConfigIte
     })
     await fs.writeFile(join(target, 'eslint.config.js'), `
 // @eslint-disable
-import antfu from '@antfu/eslint-config'
+import donovan from '@donovan/eslint-config'
 
-export default antfu(
+export default donovan(
   ${JSON.stringify(configs)},
   ...${JSON.stringify(items) ?? []},
 )

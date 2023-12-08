@@ -9,44 +9,43 @@ import type {
   MergeIntersection,
   NRules,
   Prefix,
+  ReactHooksRules,
   ReactRules,
   RenamePrefix,
   RuleConfig,
   TypeScriptRules,
   UnicornRules,
-  Unprefix,
   VitestRules,
   VueRules,
   YmlRules,
 } from '@antfu/eslint-define-config'
-import type { Rules as AntfuRules } from 'eslint-plugin-antfu'
-import type { UnprefixedRuleOptions } from '@stylistic/eslint-plugin'
+import type { Rules as donovanRules } from 'eslint-plugin-antfu'
+import type { UnprefixedRuleOptions as StylisticRules } from '@stylistic/eslint-plugin'
 
-type StylisticMergedRules = MergeIntersection<
-  EslintRules &
-  Unprefix<ReactRules, 'react/'> &
-  Unprefix<TypeScriptRules, '@typescript-eslint/'>
-  & { 'jsx-self-closing-comp': ReactRules['react/self-closing-comp'] }
->
+export type WrapRuleConfig<T extends { [key: string]: any }> = {
+  [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
+}
 
-type StylisticRules = Pick<StylisticMergedRules, keyof UnprefixedRuleOptions>
-
-export type Rules = MergeIntersection<
+export type Rules = WrapRuleConfig<
+MergeIntersection<
   RenamePrefix<TypeScriptRules, '@typescript-eslint/', 'ts/'> &
   RenamePrefix<VitestRules, 'vitest/', 'test/'> &
   RenamePrefix<YmlRules, 'yml/', 'yaml/'> &
   RenamePrefix<NRules, 'n/', 'node/'> &
   Prefix<StylisticRules, 'style/'> &
-  Prefix<AntfuRules, 'antfu/'> &
+  Prefix<donovanRules, 'donovan/'> &
   ImportRules &
   EslintRules &
   JsoncRules &
   VueRules &
+  ReactRules &
+  ReactHooksRules &
   UnicornRules &
   EslintCommentsRules &
   {
     'test/no-only-tests': RuleConfig<[]>
   }
+>
 >
 
 export type ConfigItem = Omit<FlatESLintConfigItem<Rules, false>, 'plugins'> & {
@@ -101,6 +100,7 @@ export interface StylisticConfig {
   indent?: number | 'tab'
   quotes?: 'single' | 'double'
   jsx?: boolean
+  semi?: boolean
 }
 
 export interface OptionsOverrides {
@@ -155,6 +155,13 @@ export interface OptionsConfig extends OptionsComponentExts {
   vue?: boolean
 
   /**
+   * Enable React support.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  react?: boolean
+
+  /**
    * Enable JSONC support.
    *
    * @default true
@@ -196,6 +203,7 @@ export interface OptionsConfig extends OptionsComponentExts {
     typescript?: ConfigItem['rules']
     test?: ConfigItem['rules']
     vue?: ConfigItem['rules']
+    react?: ConfigItem['rules']
     jsonc?: ConfigItem['rules']
     markdown?: ConfigItem['rules']
     yaml?: ConfigItem['rules']
